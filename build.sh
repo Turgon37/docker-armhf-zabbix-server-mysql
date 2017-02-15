@@ -13,6 +13,7 @@ echo '...Downloading Official x86 project'
 git clone --branch "${ZABBIX_VERSION}" --single-branch "${ZABBIX_URL}" zabbix-docker
 
 echo '...prepare the build'
+echo '...copying files'
 for f in `ls -1 zabbix-docker/${ZABBIX_TYPE}-${ZABBIX_DB_TYPE}/alpine`; do
   ignore=false
   case $f in
@@ -25,6 +26,7 @@ for f in `ls -1 zabbix-docker/${ZABBIX_TYPE}-${ZABBIX_DB_TYPE}/alpine`; do
     #echo zabbix-docker/${ZABBIX_TYPE}-${ZABBIX_DB_TYPE}/alpine/$f
   fi
 done
+echo '...make Dockerfile'
 # remove base image
 sed -i -e 's|^FROM\s*.*$||g' Dockerfile
 # remove declared maintainer
