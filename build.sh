@@ -16,7 +16,7 @@ echo '...prepare the build'
 for f in `ls -1 zabbix-docker/${ZABBIX_TYPE}-${ZABBIX_DB_TYPE}/alpine`; do
   ignore=false
   case $f in
-    README*|build.sh|Dockerfile_armhf)
+    README*|LICENCE|build.sh|Dockerfile_armhf)
       ignore=true
       ;;
   esac
@@ -59,7 +59,7 @@ echo '...Clean the directory'
 for f in `ls`; do
   remove=true
   case $f in
-    README*|build.sh|Dockerfile_armhf)
+    README*|LICENCE|build.sh|Dockerfile_armhf)
       remove=false
       ;;
   esac
