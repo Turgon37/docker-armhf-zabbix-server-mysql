@@ -67,7 +67,7 @@ for f in `ls`; do
       ;;
   esac
   if [ "$remove" == 'true' ]; then
-    cp --recursive --preserve-root "./$f"
+    rm --recursive --force "./$f"
     #echo zabbix-docker/${ZABBIX_TYPE}-${ZABBIX_DB_TYPE}/alpine/$f
   fi
 done
