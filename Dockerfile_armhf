@@ -1,0 +1,14 @@
+FROM turgon37/armhf-alpine:latest
+MAINTAINER Pierre GINDRAUD <pgindraud@gmail.com>
+
+ARG BUILD_TIME
+ARG ZABBIX_VERSION
+ARG ZABBIX_TYPE
+ARG ZABBIX_DB_TYPE
+
+LABEL application.zabbix.version=$ZABBIX_VERSION \
+      application.zabbix.type=$ZABBIX_TYPE \
+      application.zabbix.dbtype=$ZABBIX_DB_TYPE \
+      image.build.time=$BUILD_TIME
+
+VOLUME ["/usr/lib/zabbix/", "/var/lib/zabbix/snmptraps"]
