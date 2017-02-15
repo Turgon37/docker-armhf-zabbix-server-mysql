@@ -32,15 +32,18 @@ sed -i -e 's|^MAINTAINER\s*.*$||g' Dockerfile
 # remove too more volume declarations
 sed -i -e 's|^VOLUME\s*.*$||g' Dockerfile
 
+# create fina ldockerfile
+cat Dockerfile_armhf > Dockerfile_tmp
+
 # add volume to the official dockerfile
 volumes=`grep '^VOLUME' Dockerfile_armhf`
 sed -i -e "s|\(ENTRYPOINT.*$\)|$volumes\n\1|" Dockerfile
 
 # remove volume from custom dockerfile
-sed -i -e 's|^VOLUME\s*.*$||g' Dockerfile_armhf
+sed -i -e 's|^VOLUME\s*.*$||g' Dockerfile_tmp
 
 # append official dockerfile to the custom
-cat Dockerfile_armhf Dockerfile >> Dockerfile_tmp
+cat Dockerfile >> Dockerfile_tmp
 
 echo '...Build the images'
 docker build --build-arg ZABBIX_VERSION="$ZABBIX_VERSION" \
