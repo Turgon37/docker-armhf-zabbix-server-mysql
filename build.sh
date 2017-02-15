@@ -50,6 +50,7 @@ cat Dockerfile >> Dockerfile_tmp
 echo '...Build the images'
 docker build --build-arg ZABBIX_VERSION="$ZABBIX_VERSION" \
              --build-arg BUILD_TIME="$BUILD_TIME" \
+             --build-arg APK_FLAGS_COMMON="" \
              --tag ${DOCKER_IMAGE}:${ZABBIX_VERSION} \
              --tag ${DOCKER_IMAGE}:latest \
              --file Dockerfile_tmp \
