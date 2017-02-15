@@ -37,7 +37,7 @@ volumes=`grep '^VOLUME' Dockerfile_armhf`
 sed -i -e "s|\(ENTRYPOINT.*$\)|$volumes\n\1|" Dockerfile
 
 # remove volume from custom dockerfile
-sed -i -e 's|^VOLUME\s*.*$||g' Dockerfile
+sed -i -e 's|^VOLUME\s*.*$||g' Dockerfile_armhf
 
 # append official dockerfile to the custom
 cat Dockerfile_armhf Dockerfile >> Dockerfile_tmp
