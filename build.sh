@@ -58,7 +58,7 @@ docker build --build-arg ZABBIX_VERSION="$ZABBIX_VERSION" \
              --file Dockerfile_tmp \
              .
 
-docker push ${DOCKER_IMAGE}:latest
+docker push ${DOCKER_IMAGE}:latest ${DOCKER_IMAGE}:${ZABBIX_VERSION}
 
 echo '...Clean the directory'
 for f in `ls`; do
