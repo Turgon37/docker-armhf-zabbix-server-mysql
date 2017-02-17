@@ -18,7 +18,7 @@ directory="zabbix-docker/${ZABBIX_TYPE}-${ZABBIX_DB_TYPE}/alpine"
 for f in `ls -1 $directory`; do
   ignore=false
   case $f in
-    README*|LICENCE|build.sh|Dockerfile_armhf)
+    README*|LICENSE|build.sh|Dockerfile_armhf)
       ignore=true
       ;;
   esac
@@ -64,7 +64,7 @@ echo '...Clean the directory'
 for f in `ls`; do
   remove=true
   case $f in
-    README*|LICENCE|build.sh|Dockerfile_armhf)
+    README*|LICENSE|build.sh|Dockerfile_armhf)
       remove=false
       ;;
   esac
