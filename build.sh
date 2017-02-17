@@ -14,7 +14,8 @@ git clone --branch "${ZABBIX_VERSION}" --single-branch "${ZABBIX_URL}" zabbix-do
 
 echo '...prepare the build'
 echo '...copying files'
-for f in `ls -1 zabbix-docker/${ZABBIX_TYPE}-${ZABBIX_DB_TYPE}/alpine`; do
+directory="zabbix-docker/${ZABBIX_TYPE}-${ZABBIX_DB_TYPE}/alpine"
+for f in `ls -1 $directory`; do
   ignore=false
   case $f in
     README*|LICENCE|build.sh|Dockerfile_armhf)
@@ -22,8 +23,7 @@ for f in `ls -1 zabbix-docker/${ZABBIX_TYPE}-${ZABBIX_DB_TYPE}/alpine`; do
       ;;
   esac
   if [ "$ignore" == 'false' ]; then
-    cp --recursive zabbix-docker/${ZABBIX_TYPE}-${ZABBIX_DB_TYPE}/alpine/$f ./
-    #echo zabbix-docker/${ZABBIX_TYPE}-${ZABBIX_DB_TYPE}/alpine/$f
+    cp --recursive $directory/$f ./
   fi
 done
 echo '...make Dockerfile'
@@ -49,6 +49,8 @@ cat Dockerfile >> Dockerfile_tmp
 
 echo '...Build the images'
 docker build --build-arg ZABBIX_VERSION="$ZABBIX_VERSION" \
+             --build-arg ZABBIX_TYPE="$ZABBIX_TYPE" \
+             --build-arg ZABBIX_DB_TYPE="$ZABBIX_DB_TYPE" \
              --build-arg BUILD_TIME="$BUILD_TIME" \
              --build-arg APK_FLAGS_COMMON="" \
              --tag ${DOCKER_IMAGE}:${ZABBIX_VERSION} \
@@ -68,6 +70,5 @@ for f in `ls`; do
   esac
   if [ "$remove" == 'true' ]; then
     rm --recursive --force "./$f"
-    #echo zabbix-docker/${ZABBIX_TYPE}-${ZABBIX_DB_TYPE}/alpine/$f
   fi
 done
