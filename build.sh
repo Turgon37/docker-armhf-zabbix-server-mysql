@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-ZABBIX_VERSION="3.2"
+ZABBIX_VERSION="${ZABBIX_VERSION:-3.4}"
 ZABBIX_URL="https://github.com/zabbix/zabbix-docker.git"
 ZABBIX_TYPE="server"
 ZABBIX_DB_TYPE="mysql"
